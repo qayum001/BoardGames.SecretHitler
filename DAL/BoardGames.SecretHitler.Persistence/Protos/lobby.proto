@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+service LobbyManager{
+  rpc GetLobby (GetLobbyRequest) returns (GetLobbyResponse);
+}
+
+message GetLobbyRequest{
+  string id = 1;
+}
+
+message GetLobbyResponse{
+  string id = 1;
+}

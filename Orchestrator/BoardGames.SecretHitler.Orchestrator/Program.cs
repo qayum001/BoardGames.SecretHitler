@@ -16,12 +16,18 @@ builder.Services.AddCors(options =>
     });
 });
 
+/*using var channel = GrpcChannel.ForAddress("http://127.0.0.1:5000");
+var client = new LobbyManager.LobbyManagerClient(channel);
+var response = await client.GetLobbyAsync(new GetLobbyRequest() { Id = "lolkek"});
+
+Console.WriteLine(response);*/
+
 builder.Services.AddSingleton<IConnectionTokenService, ConnectionTokenService>();
 
 var app = builder.Build();
 
 app.UseCors();
 
-app.MapHub<GameHub>("/gamehub");
+app.AddHubs(); //Add SignalR hubs
 
 app.Run();
