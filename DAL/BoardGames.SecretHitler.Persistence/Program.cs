@@ -8,7 +8,7 @@ builder.Services.AddGrpc();
 
 builder.WebHost.ConfigureKestrel(options =>
 {
-    options.Listen(IPAddress.Any, 5000, listenOptions =>
+    options.Listen(IPAddress.Any, 32100, listenOptions =>
     {
         listenOptions.Protocols = HttpProtocols.Http2;
     });

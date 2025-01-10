@@ -9,3 +9,21 @@ services:
       - "32000:32000"
     environment:
       - ASPNETCORE_ENVIRONMENT=Realise
+        
+  persistence:
+    build:
+      context: "./DAL"
+      dockerfile: "Dockerfile"
+    ports:
+      - "32100:32100"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Realise
+  
+  api:
+    build:
+      context: "./Api"
+      dockerfile: "Dockerfile"
+    ports:
+      - "32200:32200"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Realise
