@@ -3,8 +3,8 @@ version: "3.8"
 services:
   orchestrator:
     build:
-      context: "./Orchestrator"
-      dockerfile: "Dockerfile"
+      context: "."
+      dockerfile: "./Orchestrator/Dockerfile"
     ports:
       - "32000:32000"
     environment:
@@ -12,8 +12,8 @@ services:
         
   persistence:
     build:
-      context: "./DAL"
-      dockerfile: "Dockerfile"
+      context: "."
+      dockerfile: "./DAL/Dockerfile"
     ports:
       - "32100:32100"
     environment:
@@ -21,8 +21,8 @@ services:
   
   api:
     build:
-      context: "./Api"
-      dockerfile: "Dockerfile"
+      context: "."
+      dockerfile: "./Api/Dockerfile"
     ports:
       - "32200:32200"
     environment:

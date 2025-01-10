@@ -2,13 +2,15 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 
 WORKDIR /app
 
-COPY ["BoardGames.SecretHitler.Orchestrator/*.csproj", "Orchestrator/"]
+COPY ["./Orchestrator/BoardGames.SecretHitler.Orchestrator/*.csproj", "Orchestrator/Project/"]
 
-RUN dotnet restore Orchestrator/
+COPY ["./Protos/", "Protos/"]
 
-COPY ["BoardGames.SecretHitler.Orchestrator", "Orchestrator/"]
+RUN dotnet restore Orchestrator/Project
 
-WORKDIR /app/Orchestrator
+COPY ["./Orchestrator/BoardGames.SecretHitler.Orchestrator", "Orchestrator/Project/"]
+
+WORKDIR /app/Orchestrator/Project
 
 RUN dotnet publish -c Release -o /app/publish
 

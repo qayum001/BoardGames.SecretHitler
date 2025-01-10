@@ -2,13 +2,15 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 
 WORKDIR /app
 
-COPY ["BoardGames.SecretHitler.Api/*.csproj", "Api/"]
+COPY ["./Api/BoardGames.SecretHitler.Api/*.csproj", "Api/Project/"]
 
-RUN dotnet restore Api/
+COPY ["./Protos/", "Protos/"]
 
-COPY ["BoardGames.SecretHitler.Api", "Api/"]
+RUN dotnet restore Api/Project
 
-WORKDIR /app/Api
+COPY ["./Api/BoardGames.SecretHitler.Api", "Api/Project/"]
+
+WORKDIR /app/Api/Project/
 
 RUN dotnet publish -c Release -o /app/publish
 

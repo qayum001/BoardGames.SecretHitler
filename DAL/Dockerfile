@@ -2,13 +2,15 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 
 WORKDIR /app
 
-COPY ["BoardGames.SecretHitler.Persistence/*.csproj", "Persistence/"]
+COPY ["./DAL/BoardGames.SecretHitler.Persistence/*.csproj", "Persistence/Project/"]
 
-RUN dotnet restore Persistence/
+COPY ["./Protos/", "Protos/"]
 
-COPY ["BoardGames.SecretHitler.Persistence", "Persistence/"]
+RUN dotnet restore Persistence/Project
 
-WORKDIR /app/Persistence
+COPY ["./DAL/BoardGames.SecretHitler.Persistence/", "Persistence/Project/"]
+
+WORKDIR /app/Persistence/Project
 
 RUN dotnet publish -c Release -o /app/publish
 
