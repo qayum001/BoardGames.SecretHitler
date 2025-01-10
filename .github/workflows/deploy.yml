@@ -1,0 +1,11 @@
+name: "System deployment"
+
+on: push
+
+jobs:
+  deploy:
+    runs-on: dev-m
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: docker build -t BoardGames.SecretHitler.Orchestrator .
