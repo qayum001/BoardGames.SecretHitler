@@ -3,7 +3,9 @@ version: "3.8"
 services:
   orchestrator:
     build:
-      dockerfile: ./Orchestrator/Dockerfile
+      context: "./Orchestrator"
+      dockerfile: "Dockerfile"
     ports:
       - "32000:32000"
-    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Realise

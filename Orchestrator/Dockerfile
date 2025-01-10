@@ -4,15 +4,13 @@ EXPOSE 32000
 
 WORKDIR /app
 
-COPY . .
+COPY ["BoardGames.SecretHitler.Orchestrator", "Orchestrator"]
 
-WORKDIR ./BoardGames.SecretHitler.Orchestrator 
+WORKDIR /app/Orchestrator
 
 RUN dotnet restore 
 RUN dotnet publish -c Relise -o /app/publish
 
-WORKDIR ./publish
+WORKDIR /app/publish
 
 ENTRYPOINT ["dotnet", "BoardGames.SecretHitler.Orchestrator.dll"]
-
-
